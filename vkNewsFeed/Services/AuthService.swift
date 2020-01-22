@@ -20,7 +20,6 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     lazy var keyChain = KeychainSwift()
     
-   // private let appID = "7288702"
     private let appID = "7289341"
     private let vkSDK : VKSdk
     

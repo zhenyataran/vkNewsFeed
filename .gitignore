@@ -88,3 +88,33 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+Pods/ModelMapper/LICENSE
+Pods/ModelMapper/README.md
+Pods/ModelMapper/Sources/Convertible.swift
+Pods/ModelMapper/Sources/DefaultConvertible.swift
+Pods/ModelMapper/Sources/Defaults+Convertible.swift
+Pods/ModelMapper/Sources/Float+Convertible.swift
+Pods/ModelMapper/Sources/Mappable.swift
+Pods/ModelMapper/Sources/Mapper.swift
+Pods/ModelMapper/Sources/MapperError.swift
+Pods/ModelMapper/Sources/NSDictionary+Safety.swift
+Pods/ModelMapper/Sources/Transform+Dictionary.swift
+Pods/ModelMapper/Sources/Transform.swift
+Pods/ModelMapper/Sources/URL+Convertible.swift
+Pods/Moya-ModelMapper/LICENSE
+Pods/Moya-ModelMapper/README.md
+Pods/Moya-ModelMapper/Sources/Moya-ModelMapper/Array+Shims.swift
+Pods/Moya-ModelMapper/Sources/Moya-ModelMapper/Response+ModelMapper.swift
+Pods/Moya-ModelMapper/Sources/Moya-ModelMapper/ResponseAvailability.swift
+Pods/Target Support Files/ModelMapper/ModelMapper-dummy.m
+Pods/Target Support Files/ModelMapper/ModelMapper-Info.plist
+Pods/Target Support Files/ModelMapper/ModelMapper-prefix.pch
+Pods/Target Support Files/ModelMapper/ModelMapper-umbrella.h
+Pods/Target Support Files/ModelMapper/ModelMapper.modulemap
+Pods/Target Support Files/ModelMapper/ModelMapper.xcconfig
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper-dummy.m
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper-Info.plist
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper-prefix.pch
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper-umbrella.h
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper.modulemap
+Pods/Target Support Files/Moya-ModelMapper/Moya-ModelMapper.xcconfig

@@ -19,9 +19,14 @@ struct FeedResponse: Mappable {
 
 struct FeedItems: Mappable {
     let items: [FeedItem]
+    let profiles: [Profile]
+    let groups: [Group]
+
     
     init(map: Mapper) throws {
         try items = map.from("items")
+        try profiles = map.from("profiles")
+        try groups = map.from("groups")
     }
 }
 
@@ -31,9 +36,9 @@ struct FeedItem: Mappable {
     let postID: Int
     let text: String?
     let date: Double
-    let comments: Int
-    let likes: countItem
-    let views: countItem
+    let comments: countItem?
+    let likes: countItem?
+    let views: countItem?
     let reposts: countItem?
     let attachments: [Attachment]?
     
@@ -42,10 +47,10 @@ struct FeedItem: Mappable {
         try postID = map.from("post_id")
         try text = map.optionalFrom("text")
         try date = map.from("date")
-        try comments = map.from("comments")
-        try likes = map.from("likes")
-        try views = map.from("views")
-        try reposts = map.from("reposts")
+        try comments = map.optionalFrom("comments")
+        try likes = map.optionalFrom("likes")
+        try views = map.optionalFrom("views")
+        try reposts = map.optionalFrom("reposts")
         try attachments = map.optionalFrom("attachments")
     }
     
@@ -67,28 +72,6 @@ struct Photo: Mappable {
     
     init(map: Mapper) throws {
         try sizes = map.from("sizes")
-    }
-    
-    var height: Int {
-        return getSizes().height
-    }
-    
-    var width: Int {
-        return getSizes().width
-    }
-    
-    var url: String {
-        return getSizes().url
-    }
-    
-    func getSizes() -> PhotoSize {
-        if let sizeX = sizes.first(where: {$0.type == "x"}) {
-            return sizeX
-        } else if let fullSize = sizes.first(where: {$0.type == "z"}) {
-            return fullSize
-        } else {
-            return PhotoSize()
-        }
     }
 }
 
@@ -120,4 +103,45 @@ struct countItem: Mappable {
     init(map: Mapper) throws {
         try count = map.from("count")
     }
+}
+
+protocol ProfileOrGroup {
+    var id: Int { get }
+    var photo: String { get }
+    var name: String { get }
+}
+
+struct Profile: Mappable, ProfileOrGroup {
+    
+    let id: Int
+    let firstName: String
+    let lastName: String
+    let photo100: String
+    
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        try firstName = map.from("first_name")
+        try lastName = map.from("last_name")
+        try photo100 = map.from("photo_100")
+    }
+    
+    var name: String {
+        return firstName + " " + lastName
+    }
+
+    var photo: String { return photo100 }
+}
+
+struct Group: Mappable, ProfileOrGroup {
+    let id: Int
+    let name: String
+    let photo100: String
+    
+    init(map: Mapper) throws {
+        try id = map.from("id")
+        try name = map.from("name")
+        try photo100 = map.from("photo_100")
+    }
+    
+    var photo: String { return photo100}
 }

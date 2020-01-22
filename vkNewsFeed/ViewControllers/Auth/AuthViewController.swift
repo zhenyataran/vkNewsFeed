@@ -16,8 +16,9 @@ class AuthViewController: UIViewController {
     
     lazy var sigInButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Sig In", for: .normal)
-        button.backgroundColor = .white
+        button.setTitle("Sig In To Vk", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.backgroundColor = .gray
         button.addTarget(self, action: #selector(sigIn), for: .touchUpInside)
         return button
     }()
@@ -27,7 +28,16 @@ class AuthViewController: UIViewController {
         
         authService = AppDelegate.shared().authService
         view.backgroundColor = .blue
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         setUI()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        //self.view.setNeedsLayout()
     }
 }
 
@@ -36,7 +46,9 @@ extension AuthViewController {
     func setUI() {
         view.addSubViews(to: sigInButton)
         sigInButton.pin.vCenter().hCenter().height(30).sizeToFit(.widthFlexible)
-//        sigInButton.pin.hCenter().vCenter().size(30)
+        
+        sigInButton.layer.cornerRadius = sigInButton.frame.height / 2
+        sigInButton.clipsToBounds = true
     }
     
     @objc func sigIn(selector: UIButton) {

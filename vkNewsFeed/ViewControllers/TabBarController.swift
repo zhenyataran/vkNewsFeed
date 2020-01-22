@@ -22,7 +22,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let news = UINavigationController(rootViewController: NewsFeedViewController())
         news.tabBarItem = UITabBarItem.init(tabBarSystemItem: .bookmarks, tag: 0)
         
-        let profile = UINavigationController(rootViewController: UIViewController())
+        let profile = UINavigationController(rootViewController: ProfileViewController())
         profile.tabBarItem = UITabBarItem.init(tabBarSystemItem: .more, tag: 1)
         
         self.viewControllers = [news, profile]

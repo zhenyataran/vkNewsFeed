@@ -13,6 +13,7 @@ import KeychainSwift
 enum ServiceApi {
     
     case getNews
+    case getProfile
 }
 
 extension ServiceApi: TargetType {
@@ -24,6 +25,8 @@ extension ServiceApi: TargetType {
         switch self {
         case .getNews:
             return "/method/newsfeed.get"
+        case .getProfile:
+            return "/method/account.getProfileInfo"
         }
     }
     
@@ -35,17 +38,21 @@ extension ServiceApi: TargetType {
     }
     
     var parameters: [String: Any] {
+        let key = KeychainSwift()
          switch self {
          case .getNews:
-            let key = KeychainSwift()
             var params = [String: Any]()
             guard let token = key.get("access_token") else { return [String: Any]() }
             params["filters"] = "post,photo"
             params["access_token"] = token
             params["v"] = "5.103"
             return params
-//         default:
-//             return nil
+         case .getProfile:
+            var params = [String: Any]()
+            guard let token = key.get("access_token") else { return [String: Any]() }
+            params["access_token"] = token
+            params["v"] = "5.103"
+            return params
          }
      }
     
@@ -56,6 +63,8 @@ extension ServiceApi: TargetType {
     var task: Task {
         switch self {
         case .getNews:
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+        case .getProfile:
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }

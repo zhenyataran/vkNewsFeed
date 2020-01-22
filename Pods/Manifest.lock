@@ -1,8 +1,16 @@
 PODS:
   - Alamofire (4.9.1)
   - KeychainSwift (19.0.0)
+  - ModelMapper (10.0.0):
+    - ModelMapper/Core (= 10.0.0)
+  - ModelMapper/Core (10.0.0)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
+  - Moya-ModelMapper (9.0.0):
+    - Moya-ModelMapper/Core (= 9.0.0)
+  - Moya-ModelMapper/Core (9.0.0):
+    - ModelMapper (~> 10.0)
+    - Moya (~> 13.0)
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
@@ -13,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - KeychainSwift
   - Moya
+  - Moya-ModelMapper
   - PinLayout
   - VK-ios-sdk
 
@@ -20,7 +29,9 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - KeychainSwift
+    - ModelMapper
     - Moya
+    - Moya-ModelMapper
     - PinLayout
     - Result
     - VK-ios-sdk
@@ -28,11 +39,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Moya-ModelMapper: 4948625af7fc5eef41ad9fdfe0c3517170b50960
   PinLayout: e41a50260a76508b7a7fcee8955c76639adc69bc
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   VK-ios-sdk: 62a10b6571fbcda0657f455fedce7fedf55b4cd0
 
-PODFILE CHECKSUM: b5276f5c9d0311c098c39faedddf5f46bc1378d4
+PODFILE CHECKSUM: 7c951cb1b56b7aeb506860981ff81b62954c9ce6
 
 COCOAPODS: 1.8.4

@@ -23,7 +23,7 @@ extension ServiceApi: TargetType {
     var path: String {
         switch self {
         case .getNews:
-            return "https://api.vk.com"
+            return "/method/newsfeed.get"
         }
     }
     
@@ -34,17 +34,18 @@ extension ServiceApi: TargetType {
         }
     }
     
-    var parameters: [String: Any]? {
+    var parameters: [String: Any] {
          switch self {
-         case .getNews():
+         case .getNews:
             let key = KeychainSwift()
             var params = [String: Any]()
+            guard let token = key.get("access_token") else { return [String: Any]() }
             params["filters"] = "post,photo"
-            params["acces_token"] = key.get("acces_token")
+            params["access_token"] = token
             params["v"] = "5.103"
             return params
-         default:
-             return nil
+//         default:
+//             return nil
          }
      }
     
@@ -55,7 +56,7 @@ extension ServiceApi: TargetType {
     var task: Task {
         switch self {
         case .getNews:
-            return .requestParameters(parameters: parameters!, encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
     }
     

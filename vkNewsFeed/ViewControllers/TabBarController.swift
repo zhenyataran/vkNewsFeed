@@ -19,7 +19,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let news = UINavigationController(rootViewController: UIViewController())
+        let news = UINavigationController(rootViewController: NewsFeedViewController())
         news.tabBarItem = UITabBarItem.init(tabBarSystemItem: .bookmarks, tag: 0)
         
         let profile = UINavigationController(rootViewController: UIViewController())

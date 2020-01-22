@@ -20,18 +20,19 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     lazy var keyChain = KeychainSwift()
     
-    private let appID = "7288702"
+   // private let appID = "7288702"
+    private let appID = "7289341"
     private let vkSDK : VKSdk
     
     weak var delegate: AuthDelegate?
     
     var token: String? {
         get {
-            keyChain.get("acces_token")
+            keyChain.get("access_token")
         }
         set {
             guard let newValue = newValue else { return }
-            keyChain.set(newValue, forKey: "acces_token")
+            keyChain.set(newValue, forKey: "access_token")
         }
     }
     
@@ -44,12 +45,11 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func wakeUp() {
-        let scope = ["offline"]
+        let scope = ["offline, wall, friends, photos"]
         
         VKSdk.wakeUpSession(scope) { [delegate] (state, error) in
             if state == VKAuthorizationState.authorized {
                 delegate?.authSignIn()
-                self.token = VKSdk.accessToken()?.accessToken
             } else if state == VKAuthorizationState.initialized {
                 VKSdk.authorize(scope)
             } else {
@@ -59,7 +59,8 @@ final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-        if token != nil {
+        if result.token != nil {
+            token = result.token.accessToken
             delegate?.authSignIn()
         }
     }

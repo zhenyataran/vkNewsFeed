@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 struct NetworkProvider {
-    static let provider = MoyaProvider<ServiceApi>()
+    static let provider = MoyaProvider<ServiceApi>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     
     static func request(target: ServiceApi,
@@ -20,11 +20,10 @@ struct NetworkProvider {
         provider.request(target) { (result) in
             switch result {
             case .success(let response):
-                if response.statusCode >= 200 && response.statusCode <= 300 {
+                if response.statusCode >= 200 && response.statusCode < 300 {
                     successCallback(response)
                 } else {
-                   // 2:
-                   let error = NSError(domain:"com.vsemenchenko.networkLayer", code:0, userInfo:[NSLocalizedDescriptionKey: "Parsing Error"])
+                    let error = NSError(domain: "flypika.test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Parsing Error"])
                     errorCallback(error)
                 }
             case .failure(let error):

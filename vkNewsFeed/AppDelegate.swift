@@ -31,10 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
-    }
-
-
+           VKSdk.processOpen(url, fromApplication: UIApplication.OpenURLOptionsKey.sourceApplication.rawValue)
+           return true
+       }
 }
 
 extension AppDelegate: AuthDelegate {
@@ -48,7 +47,7 @@ extension AppDelegate: AuthDelegate {
     }
     
     func authFailedSigIn() {
-        
+        window?.rootViewController?.displayAlert(title: "Auth failed", with: "someting goes worng, please try again later.")
     }
     
     

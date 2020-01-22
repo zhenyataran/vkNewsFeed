@@ -8,6 +8,7 @@ target 'vkNewsFeed' do
   pod 'Moya'
   pod 'PinLayout'
   pod 'KeychainSwift'
+  pod 'Moya-ModelMapper'
   # Pods for vkNewsFeed
 
 end
